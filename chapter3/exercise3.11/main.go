@@ -28,7 +28,7 @@ func main() {
 
 func commas(s string) string {
 	b3 := make([]byte, 3)
-	buf := bytes.NewBufferString(s)
+	buf := bytes.NewBufferString(reverseStr(s))
 	var sr string
 	for {
 		if buf.Len() <= 3 {
@@ -38,5 +38,17 @@ func commas(s string) string {
 		buf.Read(b3)
 		sr += string(b3[:]) + ","
 	}
-	return sr
+	return reverseStr(sr)
+}
+
+func reverseStr(str string) string {
+	b := []byte(str)
+	l := len(str)
+	li := l - 1
+	s := make([]byte, l)
+	for i := 0; i < l; i++ {
+		s[i] = b[li-i]
+	}
+
+	return string(s)
 }
